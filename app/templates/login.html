@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <div class="col-5 mx-auto text-center m-3">
+        <h1 class="display-4">Sign In</h1>
+        <form action="" method="post" novalidate>
+            
+            {{ form.hidden_tag() }}
+            
+            <div class="form-group md-2 text-center">
+                
+                                            <!-- Flask form -->
+
+                {{ form.username(size=32, class_="form-control m-2", placeholder="Enter username") }}
+                <!-- Error handling -->
+                {% for error in form.username.errors %}
+                    <div class="alert alert-dismissible alert-danger">
+                        <button type="button" class="close" data-dismiss="alert">&times;</button>
+                        <strong>Oh oh!</strong> <a href="#" class="alert-link"> {{ error }} </a>
+                    </div>
+                {% endfor %}
+
+
+                {{ form.password(size=32, class_="form-control m-2", placeholder="Enter password") }}
+                <!-- Error handling -->
+                {% for error in form.password.errors %}
+                    <div class="alert alert-dismissible alert-danger">
+                        <button type="button" class="close" data-dismiss="alert">&times;</button>
+                        <strong>Oh oh!</strong> <a href="#" class="alert-link"> {{ error }} </a>
+                    </div>
+                {% endfor %}
+
+
+                {{ form.remember_me() }} {{ form.remember_me.label }}
+                
+                <p></p>
+                
+                {{ form.submit(class_="btn btn-primary") }}
+            </div>
+        </form>
+    </div>
+{% endblock %}
