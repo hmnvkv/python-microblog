@@ -3,16 +3,17 @@
 
 {% block content %}
 
-    <div class="container">
-        <div class="row">
-            <div class="col-6 mx-auto text-center m-2">
-                <h1> Hi, {{ current_user.username }} </h1>
-
+        <div class="row text-white" style="background-color:rgba(0, 0, 0, 0.5);">
+            <div class="col-6 mx-auto text-center m-3">
+                <h1 class="text-white m-2"> Hi, {{ current_user.username }}! </h1>
+            </div> 
+        </div>
+        <div class="row text-white" style="background-color:rgba(0, 0, 0, 0.5);">
+            <div class="col-6 mx-auto text-center">
                 {% for post in posts %}
                     <p> <i> {{ post.author.username }} says:</i> {{ post.body }} </p>
                 {% endfor %}
-            </div> 
+            </div>
         </div>
-    </div>
 
 {% endblock %}

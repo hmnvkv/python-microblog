@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+    <div class="row">
+        <div class="jumbotron text-center mx-auto text-white m-3 " style="background-color:rgba(0, 0, 0, 0.5);">
+            <img class="pull-left mr-2" src="{{ user.avatar(128) }}" alt="Profile Pic">
+            <h1 class="display-4 m-1 text-white"> {{ user.username }} </h1>
+            
+            {% if user.last_seen %}
+                <small class="text-white"> Last Seen: {{ user.last_seen }} </small>
+            {% endif %}
+            <br>
+            <br>
+            <p class="lead m-2">
+                {% if user.about_me %}
+                    {{ user.about_me }}
+                {% else %}
+                    {{user.username }}!, Tell us about you. Make a little desciption about who you are to help other people to meet you!
+                {% endif %}
+            </p>
+
+            <a class="btn btn-info" href="{{ url_for('edit_profile') }}"> Edit Profile </a>
+
+            <hr class='my-4'>
+            
+            {% for post in posts %}
+                <p> 
+                    <img src="{{ post.author.avatar(36) }}" alt=""> <i> {{ post.author.username }} says: </i> {{ post.body }}
+                </p>
+            {% endfor %}
+
+        </div>
+    </div>
+
+{% endblock %}
