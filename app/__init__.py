@@ -16,6 +16,9 @@ login = LoginManager(app)
 login.login_view = 'login'
 
 
+from app import routes, models, errors
+
+
 if not app.debug:
     if app.config['MAIL_SERVER']:
         auth = None
@@ -31,6 +34,7 @@ if not app.debug:
             credentials=auth, secure=secure)
         mail_handler.setLevel(logging.ERROR)
         app.logger.addHandler(mail_handler)
+
         if not os.path.exists('logs'):
             os.mkdir('logs')
         file_handler = RotatingFileHandler('logs/microblog.log', maxBytes=10240,
@@ -42,6 +46,3 @@ if not app.debug:
 
         app.logger.setLevel(logging.INFO)
         app.logger.info('Microblog startup')
-
-
-from app import routes, models, errors

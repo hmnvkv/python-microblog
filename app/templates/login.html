@@ -2,8 +2,11 @@
 
 {% block content %}
     <div class="row">
-        <div class="col-5 mx-auto text-center m-3">
-            <h1 class="display-4">Sign In</h1>
+        <div class="col-5 mx-auto text-center m-3" style="background-color:rgba(0, 0, 0, 0.5);">
+            <br>
+            <br>
+            <h1 class="display-4 text-white m-3">Sign In</h1>
+            <br>
             <form action="" method="post" novalidate>
                 
                 {{ form.hidden_tag() }}
@@ -12,7 +15,7 @@
                     
                                                 <!-- Flask form -->
 
-                    {{ form.username(size=32, class_="form-control m-2", placeholder="Enter username") }}
+                    {{ form.username(size=32, class_="form-control m-2 bg-primary text-white", placeholder="Enter username") }}
                     <!-- Error handling -->
                     {% for error in form.username.errors %}
                         <div class="alert alert-dismissible alert-danger">
@@ -22,7 +25,7 @@
                     {% endfor %}
 
 
-                    {{ form.password(size=32, class_="form-control m-2", placeholder="Enter password") }}
+                    {{ form.password(size=32, class_="form-control m-2 bg-primary text-white", placeholder="Enter password") }}
                     <!-- Error handling -->
                     {% for error in form.password.errors %}
                         <div class="alert alert-dismissible alert-danger">
@@ -33,12 +36,10 @@
 
 
                     {{ form.remember_me() }} {{ form.remember_me.label }}
-                    
-                    <p></p>
-                    
-                    {{ form.submit(class_="btn btn-secondary") }}
+
+                    {{ form.submit(class_="btn btn-secondary m-3") }}
                 </div>
-                <small> New user? <a class="text-info" href="{{ url_for('register') }}"> Click to register! </a> </small>
+                <small> New user? <a class="text-danger" href="{{ url_for('register') }}"> Click to register! </a> </small>
             </form>
         </div>
     </div>  

@@ -7,6 +7,11 @@
             <img class="pull-left mr-2" src="{{ user.avatar(128) }}" alt="Profile Pic">
             <h1 class="display-4 m-1 text-white"> {{ user.username }} </h1>
             
+            <ul class="list-inline">
+                <li class="list-inline-item"> {{ user.followers.count() }} Followers </li>
+                <li class="list-inline-item"> {{ user.followed.count() }} Following </li>
+            </ul>
+
             {% if user.last_seen %}
                 <small class="text-white"> Last Seen: {{ user.last_seen }} </small>
             {% endif %}
@@ -20,7 +25,19 @@
                 {% endif %}
             </p>
 
-            <a class="btn btn-info" href="{{ url_for('edit_profile') }}"> Edit Profile </a>
+            {% if user == current_user %}
+                <a class="btn btn-info" href="{{ url_for('edit_profile') }}"> Edit Profile </a>
+            {% elif not current_user.is_following(user) %}
+                <form action="{{ url_for('follow', username=user.username) }}" method='post'>
+                    {{ form.hidden_tag() }}
+                    {{ form.submit(value='Follow', class_="btn btn-info") }}
+                </form>
+            {% else %}
+                <form action="{{ url_for('unfollow', username=user.username) }}" method="post">
+                    {{ form.hidden_tag() }}
+                    {{ form.submit(value='Unfollow', class_="btn btn-warning") }}
+                </form>
+            {% endif %}
 
             <hr class='my-4'>
             

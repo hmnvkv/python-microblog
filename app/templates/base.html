@@ -24,17 +24,20 @@
     {% include '_navbar.html' %}
 
 
-    <!-- Messages -->
-    {% with messages = get_flashed_messages() %}
-    {% if messages %}
-        <div class="alert alert-dismissible alert-secondary">
-            <button type="button" class="close" data-dismiss="alert">&times;</button>
-            <strong> {{ message }} </strong> 
-        </div>
-    {% endif %}
-    {% endwith %}
-
+    
     <div class="container">        
+  
+        <!-- Messages -->
+        {% with messages = get_flashed_messages() %}
+        {% if messages %}
+        <div class="alert alert-dismissible alert-primary">
+            <button type="button" class="close" data-dismiss="alert">&times;</button>
+            {{ messages }}
+          </div>
+        {% endif %}
+        {% endwith %}
+
+
         <!-- Main Content -->
         {% block content %}
         
